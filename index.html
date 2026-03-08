@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>A Small Question ❤️</title>
+<title>A Question ❤️</title>
 
 <style>
 
@@ -69,6 +69,17 @@ pointer-events:none;
 font-size:18px;
 }
 
+#danceArea{
+display:none;
+margin-top:40px;
+}
+
+#danceArea img{
+width:220px;
+margin:10px;
+border-radius:10px;
+}
+
 </style>
 
 </head>
@@ -81,6 +92,11 @@ font-size:18px;
 
 <button id="yes" onclick="yesClick()">YES ❤️</button>
 <button id="no">NO 🙈</button>
+
+<div id="danceArea">
+<img src="dance1.gif">
+<img src="dance2.gif">
+</div>
 
 </div>
 
@@ -133,10 +149,8 @@ const funnyMessages=[
 "Wait wait... think again 😅",
 "But coffee is good though ☕",
 "We could also get sushi 🍣",
-"Or Some Pani Puri........",
 "And maybe ice-cream 🍦",
 "Come on it would be fun 🙂"
-  
 ];
 
 let msgIndex=0;
@@ -163,10 +177,10 @@ document.getElementById("no").style.display="none";
 
 let yesBtn=document.getElementById("yes");
 
-yesBtn.style.transform="scale(1.7)";
+yesBtn.style.transform="scale(1.8)";
 yesBtn.innerHTML="YES!!! ❤️";
 
-document.getElementById("dance").style.display="block";
+document.getElementById("danceArea").style.display="block";
 
 for(let i=0;i<160;i++){
 
