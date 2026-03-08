@@ -72,7 +72,6 @@ font-size:18px;
 #danceArea{
 display:none;
 margin-top:40px;
-display:flex;
 justify-content:center;
 align-items:center;
 gap:20px;
@@ -99,11 +98,11 @@ object-fit:cover;
 
 <div id="danceArea">
 
-<video autoplay loop muted>
+<video id="dance1" loop muted>
 <source src="dance1.mp4" type="video/mp4">
 </video>
 
-<video autoplay loop muted>
+<video id="dance2" loop muted>
 <source src="dance2.mp4" type="video/mp4">
 </video>
 
@@ -201,7 +200,14 @@ noBtn.style.display="none";
 yesBtn.style.transform="scale(1.8)";
 yesBtn.innerHTML="YES!!! ❤️";
 
-document.getElementById("danceArea").style.display="flex";
+const danceArea=document.getElementById("danceArea");
+danceArea.style.display="flex";
+
+const v1=document.getElementById("dance1");
+const v2=document.getElementById("dance2");
+
+v1.play();
+v2.play();
 
 for(let i=0;i<160;i++){
 
