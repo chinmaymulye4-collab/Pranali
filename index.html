@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>A Question For You ❤️</title>
+<title>A Small Question For You ❤️</title>
 
 <style>
+
 body{
-text-align:center;
+margin:0;
 font-family:Arial;
-background:#ffe6f0;
-padding-top:100px;
+text-align:center;
+background:linear-gradient(-45deg,#ffdde1,#ee9ca7,#ffc3a0,#ffafbd);
+background-size:400% 400%;
+animation:bgmove 15s ease infinite;
+color:#333;
 overflow:hidden;
+}
+
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+margin-top:120px;
+}
+
+#story{
+font-size:26px;
+min-height:80px;
+margin-bottom:30px;
 }
 
 button{
 font-size:22px;
-padding:15px 30px;
+padding:14px 35px;
 margin:20px;
 border:none;
 border-radius:12px;
@@ -27,38 +47,113 @@ color:white;
 }
 
 #no{
-background:#999;
+background:#666;
 color:white;
 position:absolute;
 }
 
 .heart{
 position:fixed;
-top:-10px;
 color:#ff4d6d;
-font-size:20px;
-animation:fall linear forwards;
+pointer-events:none;
+animation:fall 4s linear forwards;
 }
 
 @keyframes fall{
-0%{transform:translateY(0);}
+0%{transform:translateY(-10vh);}
 100%{transform:translateY(110vh);}
 }
+
+.confetti{
+position:fixed;
+font-size:25px;
+animation:confetti 3s linear forwards;
+}
+
+@keyframes confetti{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(720deg);}
+}
+
+.cursor-heart{
+position:fixed;
+pointer-events:none;
+font-size:18px;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<h1>Hey 😊</h1>
-<h2>Will you go out for coffee with me? ☕</h2>
+<div class="container">
+
+<div id="story"></div>
 
 <button id="yes" onclick="yesClick()">YES ❤️</button>
 <button id="no">NO 🙈</button>
 
+</div>
+
 <script>
 
+const storyText=[
+"Hey...",
+"I wanted to ask you something...",
+"Honestly I really enjoy talking with you 🙂",
+"We've had such good conversations...",
+"So I thought...",
+"Maybe we could go out sometime?",
+"Maybe sushi 🍣",
+"And then ice-cream 🍦",
+"What do you say?"
+];
+
+let index=0;
+let char=0;
+
+function typeStory(){
+
+if(index<storyText.length){
+
+let current=storyText[index];
+
+if(char<current.length){
+
+document.getElementById("story").innerHTML+=current.charAt(char);
+
+char++;
+
+setTimeout(typeStory,40);
+
+}else{
+
+document.getElementById("story").innerHTML+="<br>";
+index++;
+char=0;
+
+setTimeout(typeStory,800);
+
+}
+
+}
+
+}
+
+typeStory();
+
 const noBtn=document.getElementById("no");
+
+const funnyMessages=[
+"Wait wait... think again 😅",
+"But sushi is good though 🍣",
+"And ice-cream too 🍦",
+"Come on it would be fun 🙂",
+"Okay okay maybe YES?"
+];
+
+let msgIndex=0;
 
 noBtn.addEventListener("mouseover",function(){
 
@@ -68,28 +163,52 @@ let y=Math.random()*(window.innerHeight-100);
 noBtn.style.left=x+"px";
 noBtn.style.top=y+"px";
 
+document.getElementById("story").innerHTML=funnyMessages[msgIndex%funnyMessages.length];
+
+msgIndex++;
+
 });
 
 function yesClick(){
-alert("Yay! I knew it 😄❤️");
+
+document.getElementById("story").innerHTML="YAY!! I knew you'd say yes ❤️";
+
+for(let i=0;i<120;i++){
+
+let conf=document.createElement("div");
+
+conf.innerHTML=["🎉","❤️","✨","💖"][Math.floor(Math.random()*4)];
+
+conf.classList.add("confetti");
+
+conf.style.left=Math.random()*100+"vw";
+
+conf.style.fontSize=(Math.random()*25+15)+"px";
+
+document.body.appendChild(conf);
+
+setTimeout(()=>{conf.remove()},3000);
+
 }
 
-function createHeart(){
+}
 
-const heart=document.createElement("div");
-heart.classList.add("heart");
+document.addEventListener("mousemove",function(e){
+
+let heart=document.createElement("div");
+
 heart.innerHTML="❤️";
 
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(Math.random()*3+2)+"s";
+heart.classList.add("cursor-heart");
+
+heart.style.left=e.pageX+"px";
+heart.style.top=e.pageY+"px";
 
 document.body.appendChild(heart);
 
-setTimeout(()=>{heart.remove()},5000);
+setTimeout(()=>{heart.remove()},600);
 
-}
-
-setInterval(createHeart,300);
+});
 
 </script>
 
