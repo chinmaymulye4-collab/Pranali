@@ -127,8 +127,7 @@ object-fit:cover;
 const storyLines=[
 "Hey Pranali...",
 "We had a great conversation till now 🙂",
-"I had one question for you...",
-"Should we go out for a coffee next week? ☕"
+"Should we go out for a coffee next week? yeah again ☕"
 ];
 
 let lineIndex=0;
@@ -171,8 +170,8 @@ const yesBtn=document.getElementById("yes");
 const funnyMessages=[
 "Wait wait... think again 😅",
 "But coffee is good though ☕",
-"We could also get sushi 🍣",
-"And maybe ice-cream 🍦",
+"We could also get something different",
+"or could just roam around",
 "Come on it would be fun 🙂"
 ];
 
@@ -192,11 +191,11 @@ document.getElementById("story").innerHTML=funnyMessages[msgIndex%funnyMessages.
 msgIndex++;
 noCount++;
 
-if(noCount>=4){
+if(noCount>=6){
 
 document.getElementById("story").innerHTML="Okay Pranali 😄 clearly the YES button looks easier to click.";
 
-yesBtn.style.transform="scale(2.2)";
+yesBtn.style.transform="scale(3)";
 noBtn.style.transform="scale(0.5)";
 
 }
@@ -209,7 +208,7 @@ document.getElementById("story").innerHTML="YAY!! ❤️ I'm really happy you sa
 
 noBtn.style.display="none";
 
-yesBtn.style.transform="scale(1.8)";
+yesBtn.style.transform="scale(3)";
 yesBtn.innerHTML="YES!!! ❤️";
 
 const danceArea=document.getElementById("danceArea");
